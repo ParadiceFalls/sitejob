@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #D35400;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+            color: #F39C12;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav select, nav a {
+            padding: 8px;
+            font-size: 16px;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+
+        nav select {
+            background-color: #F39C12;
+            border: 1px solid #E67E22;
+            color: #2C3E50;
+        }
+
+        nav select:hover {
+            background-color: #D35400;
+        }
+
+        nav a {
+            color: white;
+            background-color: #E67E22;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background-color: #D35400;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .welcome {
+            background-color: #F39C12;
+        }
+
+        .welcome h1 {
+            font-size: 48px;
+            color: #E67E22;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 80%;
+            margin: 30px auto;
+        }
+
+        .slides {
+            display: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        .collections-section {
+            background-color: #2ECC71;
+        }
+
+        .collections-section h2 {
+            font-size: 36px;
+            color: #D35400;
+            margin-bottom: 30px;
+        }
+
+        .collections-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .collection-box {
+            background-color: #E67E22;
+            padding: 20px;
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        .collection-box h3, .collection-box p {
+            color: white;
+        }
+
+        .collection-box a {
+            color: #F39C12;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .collection-box a:hover {
+            text-decoration: underline;
+        }
+
+        .benefits-section {
+            background-color: #F39C12;
+        }
+
+        .benefits-section h2 {
+            font-size: 36px;
+            color: #E67E22;
+            margin-bottom: 30px;
+        }
+
+        .benefit {
+            display: inline-block;
+            margin: 20px;
+            width: 250px;
+        }
+
+        .benefits-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .benefits-section p {
+            color: #2C3E50;
+        }
+
+        .second-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            background-color: #2ECC71;
+        }
+
+        .nav-links a {
+            font-size: 18px;
+            color: white;
+            margin: 0 15px;
+            padding: 10px 15px;
+            background-color: #D35400;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            background-color: #E67E22;
+        }
+
+        .brands {
+            background-color: #2ECC71;
+        }
+
+        .brands h2 {
+            font-size: 36px;
+            color: #D35400;
+            margin-bottom: 20px;
+        }
+
+        .brand-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            background-color: #E67E22;
+            border-radius: 10px;
+            width: 220px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .brand h3 {
+            font-size: 24px;
+            color: white;
+        }
+
+        .brand a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .brand a:hover {
+            text-decoration: underline;
+            color: #F39C12;
+        }
+
+        footer {
+            background-color: #D35400;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-container div {
+            width: 25%;
+            margin: 10px 0;
+        }
+
+        footer .footer-container h3 {
+            font-size: 18px;
+            color: #F39C12;
+        }
+
+        footer .footer-container a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer .footer-container a:hover {
+            text-decoration: underline;
+            color: #F39C12;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 20px;
+        }
+
+        .social-icons a:hover {
+            color: #E67E22;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CompanyLogo</div>
+        <nav>
+            <select id="brandsDropdown">
+                <option value="">Select Brand</option>
+            </select>
+            <a href="mailto:contact@company.com">Contact</a>
+        </nav>
+    </header>
+
+    <section class="welcome">
+        <h1>Welcome to Our Company</h1>
+        <p>Explore our amazing products and services</p>
+        <div class="slideshow-container">
+            <div class="slide"><img src="https://via.placeholder.com/800x400?text=Product+1" alt="Product 1"></div>
+            <div class="slide"><img src="https://via.placeholder.com/800x400?text=Product+2" alt="Product 2"></div>
+            <div class="slide"><img src="https://via.placeholder.com/800x400?text=Product+3" alt="Product 3"></div>
+        </div>
+    </section>
+
+    <section class="collections-section">
+        <h2>Our Collections</h2>
+        <div class="collections-container">
+            <div class="collection-box">
+                <h3>Collection 1</h3>
+                <p>High-quality home products for every need.</p>
+                <a href="#">View Collection</a>
+            </div>
+            <div class="collection-box">
+                <h3>Collection 2</h3>
+                <p>Explore our top-tier outdoor equipment.</p>
+                <a href="#">View Collection</a>
+            </div>
+            <div class="collection-box">
+                <h3>Collection 3</h3>
+                <p>Premium materials for long-lasting quality.</p>
+                <a href="#">View Collection</a>
+            </div>
+            <div class="collection-box">
+                <h3>Collection 4</h3>
+                <p>Stylish and modern indoor designs.</p>
+                <a href="#">View Collection</a>
+            </div>
+            <div class="collection-box">
+                <h3>Collection 5</h3>
+                <p>Innovative products for every season.</p>
+                <a href="#">View Collection</a>
+            </div>
+        </div>
+        <div class="collection-box" style="width: 100%; margin-top: 40px;">
+            <a href="#">See All Collections</a>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <h2>Why Choose Our Product?</h2>
+        <div class="benefit">
+            <img src="https://via.placeholder.com/300x200?text=Benefit+1" alt="Benefit 1">
+            <p>High Quality and Durability</p>
+        </div>
+        <div class="benefit">
+            <img src="https://via.placeholder.com/300x200?text=Benefit+2" alt="Benefit 2">
+            <p>Eco-Friendly Materials</p>
+        </div>
+        <div class="benefit">
+            <img src="https://via.placeholder.com/300x200?text=Benefit+3" alt="Benefit 3">
+            <p>Affordable Pricing</p>
+        </div>
+    </section>
+
+    <section class="second-logo">
+        <img src="https://via.placeholder.com/200x100?text=Another+Logo" alt="Another Logo">
+    </section>
+
+    <section class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+    </section>
+
+    <section class="brands">
+        <h2>Our Brands</h2>
+        <div class="brand-links">
+            <div class="brand">
+                <h3>Brand 1</h3>
+                <a href="#">About Us</a>
+                <a href="#">Products</a>
+                <a href="#">Owner Resources</a>
+                <a href="#">Where to Buy</a>
+                <a href="#">EPA Certification</a>
+                <a href="#">Fireplace Safety</a>
+                <a href="#">Become a Dealer</a>
+            </div>
+            <div class="brand">
+                <h3>Brand 2</h3>
+                <a href="#">About Us</a>
+                <a href="#">Products</a>
+                <a href="#">Owner Resources</a>
+                <a href="#">Where to Buy</a>
+                <a href="#">EPA Certification</a>
+                <a href="#">Fireplace Safety</a>
+                <a href="#">Become a Dealer</a>
+            </div>
+            <div class="brand">
+                <h3>Brand 3</h3>
+                <a href="#">About Us</a>
+                <a href="#">Products</a>
+                <a href="#">Owner Resources</a>
+                <a href="#">Where to Buy</a>
+                <a href="#">EPA Certification</a>
+                <a href="#">Fireplace Safety</a>
+                <a href="#">Become a Dealer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h3>Navigation</h3>
+                <a href="#">Home</a><br>
+                <a href="#">About Us</a><br>
+                <a href="#">Services</a><br>
+                <a href="#">Contact</a><br>
+            </div>
+            <div>
+                <h3>Information</h3>
+                <p>&copy; 2025 CompanyName. All Rights Reserved.</p>
+                <a href="#">Privacy Policy</a><br>
+                <a href="#">Terms of Service</a><br>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Phone: (123) 456-7890</p>
+                <p>Email: <a href="mailto:contact@company.com">contact@company.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
