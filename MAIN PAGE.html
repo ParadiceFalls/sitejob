@@ -79,15 +79,64 @@
             position: relative;
             max-width: 80%;
             margin: 30px auto;
+            overflow: hidden; /* Ensure buttons are within the container */
         }
 
-        .slides {
+        .slide {
             display: none;
         }
 
         .slide img {
             width: 100%;
             height: auto;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide {
+            display: none;
+            opacity: 0; /* Start hidden */
+            animation: fade 1s ease-in-out forwards; /* Add fade effect */
+        }
+
+        .slide.active {
+            display: block; /* Display the active slide */
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            user-select: none;
+            z-index: 1; /* Ensure buttons are above the images */
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
         }
 
         .collections-section {
@@ -103,8 +152,9 @@
         .collections-container {
             display: flex;
             justify-content: space-around;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* Ensure the collection boxes are displayed horizontally */
             gap: 20px;
+            overflow-x: auto; /* Add horizontal scrolling if needed */
         }
 
         .collection-box {
@@ -112,6 +162,7 @@
             padding: 20px;
             width: 200px;
             border-radius: 10px;
+            flex: 0 0 auto; /* Prevent the collection boxes from shrinking */
         }
 
         .collection-box h3, .collection-box p {
@@ -264,6 +315,50 @@
             color: #E67E22;
         }
     </style>
+<script>
+// Slideshow Script with Animation for Multiple Slideshows
+let slideIndex = [1, 1, 1]; // Keep track of slide indices for multiple slideshows
+let slideInterval;
+
+function showSlides(n, collectionIndex) {
+    let slides = document.querySelectorAll(`.collection-box[data-index="${collectionIndex}"] .slide`);
+    console.log(`Collection ${collectionIndex} - Total slides: ${slides.length}`); // Debugging line
+    if (n > slides.length) { slideIndex[collectionIndex - 1] = 1; }
+    if (n < 1) { slideIndex[collectionIndex - 1] = slides.length; }
+    
+    // Hide all slides and remove the active class
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+    }
+    
+    // Show the current slide and add the active class
+    slides[slideIndex[collectionIndex - 1] - 1].classList.add("active");
+    console.log(`Collection ${collectionIndex} - Showing slide: ${slideIndex[collectionIndex - 1]}`); // Debugging line
+}
+
+function plusSlides(n, collectionIndex) {
+    slideIndex[collectionIndex - 1] += n;
+    showSlides(slideIndex[collectionIndex - 1], collectionIndex);
+}
+
+function autoSlides() {
+    for (let i = 1; i <= 3; i++) { // Assuming you have 3 collections
+        let slides = document.querySelectorAll(`.collection-box[data-index="${i}"] .slide`);
+        slideIndex[i - 1]++;
+        if (slideIndex[i - 1] > slides.length) { slideIndex[i - 1] = 1; }
+        showSlides(slideIndex[i - 1], i);
+    }
+    slideInterval = setTimeout(autoSlides, 3000); // Change image every 3 seconds
+}
+
+window.onload = function() {
+    // Initialize slides for all collections
+    for (let i = 1; i <= 3; i++) { // Assuming you have 3 collections
+        showSlides(slideIndex[i - 1], i);
+    }
+    slideInterval = setTimeout(autoSlides, 2250); // Start the automatic slideshow for all
+};
+</script>
 </head>
 <body>
 
@@ -273,7 +368,8 @@
             <select id="brandsDropdown">
                 <option value="">Select Brand</option>
             </select>
-            <a href="mailto:contact@company.com">Contact</a>
+            <a href="---------">Schedule Appointment</a>
+            <a href="mailto:contact@company.com">Customer Support</a>
         </nav>
     </header>
 
@@ -281,45 +377,60 @@
         <h1>Welcome to Our Company</h1>
         <p>Explore our amazing products and services</p>
         <div class="slideshow-container">
-            <div class="slide"><img src="https://via.placeholder.com/800x400?text=Product+1" alt="Product 1"></div>
-            <div class="slide"><img src="https://via.placeholder.com/800x400?text=Product+2" alt="Product 2"></div>
-            <div class="slide"><img src="https://via.placeholder.com/800x400?text=Product+3" alt="Product 3"></div>
+            <div class="slide active"><img src="/Images/Screenshot (12).png" alt="Product 1"></div>
+            <div class="slide"><img src="/Images/Screenshot (13).png" alt="Product 2"></div>
+            <div class="slide"><img src="/Images/Screenshot (14).png" alt="Product 3"></div>
+            <!-- Add navigation buttons -->
+            <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
         </div>
     </section>
 
     <section class="collections-section">
         <h2>Our Collections</h2>
         <div class="collections-container">
-            <div class="collection-box">
+            <div class="collection-box" data-index="1">
                 <h3>Collection 1</h3>
                 <p>High-quality home products for every need.</p>
+                <div class="slideshow-container">
+                    <div class="slide active"><img src="/Images/Screenshot (12).png" alt="Product 1"></div>
+                    <div class="slide"><img src="/Images/Screenshot (13).png" alt="Product 2"></div>
+                    <div class="slide"><img src="/Images/Screenshot (14).png" alt="Product 3"></div>
+                    <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+                </div>
                 <a href="#">View Collection</a>
             </div>
-            <div class="collection-box">
+        
+            <div class="collection-box" data-index="2">
                 <h3>Collection 2</h3>
                 <p>Explore our top-tier outdoor equipment.</p>
+                <div class="slideshow-container">
+                    <div class="slide active"><img src="/Images/Screenshot (15).png" alt="Product 1"></div>
+                    <div class="slide"><img src="/Images/Screenshot (16).png" alt="Product 2"></div>
+                    <div class="slide"><img src="/Images/Screenshot (17).png" alt="Product 3"></div>
+                    <a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
+                </div>
                 <a href="#">View Collection</a>
             </div>
-            <div class="collection-box">
+        
+            <div class="collection-box" data-index="3">
                 <h3>Collection 3</h3>
                 <p>Premium materials for long-lasting quality.</p>
-                <a href="#">View Collection</a>
-            </div>
-            <div class="collection-box">
-                <h3>Collection 4</h3>
-                <p>Stylish and modern indoor designs.</p>
-                <a href="#">View Collection</a>
-            </div>
-            <div class="collection-box">
-                <h3>Collection 5</h3>
-                <p>Innovative products for every season.</p>
+                <div class="slideshow-container">
+                    <div class="slide active"><img src="/Images/Screenshot (18).png" alt="Product 1"></div>
+                    <div class="slide"><img src="/Images/Screenshot (19).png" alt="Product 2"></div>
+                    <div class="slide"><img src="/Images/Screenshot (20).png" alt="Product 3"></div>
+                    <a class="prev" onclick="plusSlides(-1, 3)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 3)">&#10095;</a>
+                </div>
                 <a href="#">View Collection</a>
             </div>
         </div>
-        <div class="collection-box" style="width: 100%; margin-top: 40px;">
-            <a href="#">See All Collections</a>
-        </div>
+        
     </section>
+    
 
     <section class="benefits-section">
         <h2>Why Choose Our Product?</h2>
@@ -335,17 +446,6 @@
             <img src="https://via.placeholder.com/300x200?text=Benefit+3" alt="Benefit 3">
             <p>Affordable Pricing</p>
         </div>
-    </section>
-
-    <section class="second-logo">
-        <img src="https://via.placeholder.com/200x100?text=Another+Logo" alt="Another Logo">
-    </section>
-
-    <section class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Contact</a>
     </section>
 
     <section class="brands">
