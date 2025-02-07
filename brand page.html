@@ -1,0 +1,259 @@
+        body {
+            line-height: 1.6;
+        }
+
+        /* Top bar */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .top-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            color: black;
+            min-width: 150px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown-content a:hover {
+            background: #ddd;
+        }
+
+        .top-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            background: #444;
+            padding: 10px 0;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Slideshow */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: none;
+            width: 100%;
+        }
+
+        .slideshow-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .product-box {
+            width: 250px;
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-box img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-box a {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            background: #555;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo">Brand Logo</div>
+        <div class="top-menu">
+            <div class="dropdown">
+                <span>Menu</span>
+                <div class="dropdown-content">
+                    <a href="#">Option 1</a>
+                    <a href="#">Option 2</a>
+                    <a href="#">Option 3</a>
+                </div>
+            </div>
+            <a href="#">Schedule</a>
+            <a href="#">Customer Support</a>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-item">Dropdown 1
+            <div class="dropdown-content">
+                <a href="#">Sub 1</a>
+                <a href="#">Sub 2</a>
+            </div>
+        </div>
+        <div class="nav-item">Dropdown 2
+            <div class="dropdown-content">
+                <a href="#">Sub 1</a>
+                <a href="#">Sub 2</a>
+            </div>
+        </div>
+        <div class="nav-item">Dropdown 3
+            <div class="dropdown-content">
+                <a href="#">Sub 1</a>
+                <a href="#">Sub 2</a>
+            </div>
+        </div>
+        <div class="nav-item">Dropdown 4
+            <div class="dropdown-content">
+                <a href="#">Sub 1</a>
+                <a href="#">Sub 2</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+        <img class="slides" src="https://via.placeholder.com/1000x400?text=Product+1">
+        <img class="slides" src="https://via.placeholder.com/1000x400?text=Product+2">
+        <img class="slides" src="https://via.placeholder.com/1000x400?text=Product+3">
+    </div>
+
+    <!-- Secondary Navigation -->
+    <div class="nav-bar">
+        <div class="nav-item"><a href="#">Wood Burning Stoves</a></div>
+        <div class="nav-item"><a href="#">Gas Stoves</a></div>
+        <div class="nav-item"><a href="#">Contact Us</a></div>
+        <div class="nav-item"><a href="#">Manuals</a></div>
+    </div>
+
+    <!-- Product Showcase -->
+    <div class="product-showcase">
+        <div class="product-box">
+            <img src="https://via.placeholder.com/250" alt="Product 1">
+            <a href="#">View Product</a>
+        </div>
+        <div class="product-box">
+            <img src="https://via.placeholder.com/250" alt="Product 2">
+            <a href="#">View Product</a>
+        </div>
+        <div class="product-box">
+            <img src="https://via.placeholder.com/250" alt="Product 3">
+            <a href="#">View Product</a>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Back to Top</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2025 Brand Name. All rights reserved.
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+        showSlides();
+    </script>
+
+</body>
+</html>
+       
